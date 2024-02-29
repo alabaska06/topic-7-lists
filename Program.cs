@@ -1,4 +1,7 @@
 ﻿using System.Collections.Immutable;
+using System.Collections.Generic;
+using System.Linq;
+
 
 namespace topic_7_lists
 {
@@ -20,7 +23,7 @@ namespace topic_7_lists
 
                 Console.WriteLine("Here are 25 random numbers.");
 
-                for (int i = 0; i <= 25; i++)
+                for (int i = 0; i <= 24; i++)
                 {
                     numbers.Add(generator.Next(10, 20));
                 }
@@ -54,12 +57,14 @@ namespace topic_7_lists
                     numbers.Sort();  
 
                     Console.WriteLine("Sorted numbers:");
+
                     for (int i = 0; i < numbers.Count; i++)
                     {
                         int number = numbers[i];
                         Console.Write($"{number} ");
                     }
-                    Console.WriteLine() ;
+
+                    Console.WriteLine("\n") ;
                     Console.WriteLine("Hit ENTER to continue.");
                     Console.ReadLine();
                     numbers.Clear();
@@ -79,7 +84,7 @@ namespace topic_7_lists
                     {
                         Console.Write($"{num} ");
                     }
-                    Console.WriteLine();
+                    Console.WriteLine("\n");
                     Console.WriteLine("Hit ENTER to continue.");
                     Console.ReadLine();
                     numbers.Clear();
@@ -90,43 +95,88 @@ namespace topic_7_lists
                     Console.WriteLine("You chose Remove a value");
                     Console.WriteLine();
                     Console.WriteLine("Pick a value from the list");
+                    Console.WriteLine();
                     value = Convert.ToInt32(Console.ReadLine());
 
-                    numbers.Remove(value);
-                    Console.WriteLine();
-                    numbers.ForEach(Console.Write);
+                    for (int i = 0; i <= 25; i++)
+                    {
+                         numbers.Remove(value);
+                    }
 
+                    Console.WriteLine();
+                    foreach (int num in numbers)
+                    {
+                        Console.Write($"{num} ");
+                    }
+                    Console.WriteLine("\n");
                     Console.WriteLine("Hit ENTER to continue.");
                     Console.ReadLine();
                     numbers.Clear();
                 }
                 else if (choice == "4") //Add a value
                 {
+                    int value;
                     Console.WriteLine("You chose Add a value");
+                    Console.WriteLine();
+                    Console.WriteLine("Pick a value from the list");
+                    Console.WriteLine();
+                    value = Convert.ToInt32(Console.ReadLine());
+
+                    numbers.Add(value);
+                    Console.WriteLine();
+                    foreach (int num in numbers)
+                    {
+                        Console.Write($"{num} ");
+                    }
+                    Console.WriteLine("\n");
                     Console.WriteLine("Hit ENTER to continue.");
                     Console.ReadLine();
                     numbers.Clear();
+
                 }
                 else if (choice == "5")// Count the number of occurrences of a specified number
                 {
-
+                    int value, count;
                     Console.WriteLine("You chose Count the number of occurrences of a specified number");
+                    Console.WriteLine();
+                    Console.WriteLine("Pick a value from the list");
+                    Console.WriteLine();
+                    value = Convert.ToInt32(Console.ReadLine());
+                    
+                    Console.WriteLine();
+
+                    count = numbers.Count(n => n == value);
+                    Console.WriteLine($"The number {value} appeared {count} times.");
+
+                    Console.WriteLine("\n");
                     Console.WriteLine("Hit ENTER to continue.");
                     Console.ReadLine();
                     numbers.Clear();
                 }
                 else if (choice == "6")// Print the largest value
                 {
-
+                    int largest;
                     Console.WriteLine("You chose Print the largest value");
+                    Console.WriteLine();
+
+                    largest = numbers.Max();
+                    Console.WriteLine($"The largest valune within the list is: {largest}.");
+
+                    Console.WriteLine();
                     Console.WriteLine("Hit ENTER to continue.");
                     Console.ReadLine();
                     numbers.Clear();
                 }
                 else if (choice == "7")// Print the smallest value
                 {
-
+                    int smallest;
                     Console.WriteLine("You chose Print the smallest value");
+                    Console.WriteLine();
+
+                    smallest = numbers.Min();
+                    Console.WriteLine($"The smallest valune within the list is: {smallest}.");
+
+                    Console.WriteLine();
                     Console.WriteLine("Hit ENTER to continue.");
                     Console.ReadLine();
                     numbers.Clear();
@@ -138,8 +188,16 @@ namespace topic_7_lists
                 }
                 else if (choice == "9") // Print the sum and average of the numbers in the list
                 {
-
+                    int sum;
+                    sum = 0;
                     Console.WriteLine("You chose Print the sum and average of the numbers in the list");
+
+                    for (int i = 1; i <= numbers.Count; i += 1)
+                    {
+                        sum += i;
+                    }
+                    Console.WriteLine($"{sum}");//KYS STUPID BITCH DOESNT WORK
+
                     Console.WriteLine("Hit ENTER to continue.");
                     Console.ReadLine();
                     numbers.Clear();
