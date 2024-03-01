@@ -174,7 +174,7 @@ namespace topic_7_lists
                     Console.WriteLine();
 
                     smallest = numbers.Min();
-                    Console.WriteLine($"The smallest valune within the list is: {smallest}.");
+                    Console.WriteLine($"The smallest value within the list is: {smallest}.");
 
                     Console.WriteLine();
                     Console.WriteLine("Hit ENTER to continue.");
@@ -188,32 +188,56 @@ namespace topic_7_lists
                 }
                 else if (choice == "9") // Print the sum and average of the numbers in the list
                 {
-                    int sum;
+                    int sum, average;
                     sum = 0;
                     Console.WriteLine("You chose Print the sum and average of the numbers in the list");
-
-                    for (int i = 1; i <= numbers.Count; i += 1)
+                    for (int i = 0; i < numbers.Count; i++)
                     {
-                        sum += i;
+                        sum += numbers[i];                      
                     }
-                    Console.WriteLine($"{sum}");//KYS STUPID BITCH DOESNT WORK
-
+                    average = (sum / numbers.Count);
+                    Console.WriteLine();
+                    Console.WriteLine($"The total sum is: {sum}. The average is {average}.");
+                    Console.WriteLine();
                     Console.WriteLine("Hit ENTER to continue.");
                     Console.ReadLine();
                     numbers.Clear();
                 }
                 else if (choice == "10") // Determine the most frequently occurring value(s)
                 {
-
+                    
+                    int frequency;
                     Console.WriteLine("You chose Determine the most frequently occurring value(s)");
+
+                    var mostFrequentNumber = numbers
+                        .GroupBy(n => n)
+                        .OrderByDescending(g => g.Count())
+                        .First()
+                        .Key;
+
+                    frequency = numbers.Count(n => n == mostFrequentNumber);
+                    Console.WriteLine();
+                    Console.WriteLine($"The most frequently occurring number is {mostFrequentNumber}, which occurs {frequency} times.");
+                    Console.WriteLine();
                     Console.WriteLine("Hit ENTER to continue.");
                     Console.ReadLine();
                     numbers.Clear();
                 }
                 else if (choice == "11")// Pick a value and determine the number of occurrences in the list.
                 {
-
+                    int value, count;
                     Console.WriteLine("You chose Pick a value and determine the number of occurrences in the list.");
+                    Console.WriteLine();
+                    Console.WriteLine("Pick a value from the list");
+                    Console.WriteLine();
+                    value = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine();
+
+                    count = numbers.Count(n => n == value);
+                    Console.WriteLine($"The number {value} appeared {count} times.");
+
+                    Console.WriteLine("\n");
                     Console.WriteLine("Hit ENTER to continue.");
                     Console.ReadLine();
                     numbers.Clear();
